@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__orca__register",
+      "mcp__orca__sync",
+      "mcp__orca__intent",
+      "mcp__orca__clear_intent",
+      "mcp__orca__claim",
+      "mcp__orca__release",
+      "mcp__orca__annotate",
+      "mcp__orca__status",
+      "mcp__orca__heartbeat",
+      "mcp__orca__warn",
+      "mcp__orca__block",
+      "mcp__orca__read_intent"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node orca-hook-check/index.mjs pre-edit"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node orca-hook-check/index.mjs post-edit"
+          }
+        ]
+      }
+    ]
+  }
+}
